@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<!-- Zam Certcure Monitor (gtag.js) -->
+	<script>
+(function(){
+  const visitorKey = 'wmc_visitor_id';
+  let visitor = localStorage.getItem(visitorKey);
+  if (!visitor) { visitor = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random()); localStorage.setItem(visitorKey, visitor); }
+  fetch('http://127.0.0.1:5001/collect/WEBSITE_ID', {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({visitor_id:visitor, page:location.href, referrer:document.referrer}),
+    keepalive: true
+  }).catch(function(){});
+})();
+</script>
+	
 	<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQ7KZPWVVG"></script>
 <script>
